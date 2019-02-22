@@ -29,5 +29,29 @@ class BinaryTree
      */
     public static function invert($root)
     {
+        if($root === null) {
+            return null;
+        } 
+
+        $bkpLeft = $root->left;
+        $root->left = self::invert($root->right);
+        $root->right = self::invert($bkpLeft);
+
+        return $root;
     }
 }
+
+// $root = new BinaryNode(1);
+
+// $root->left = new BinaryNode(2);
+// $root->right = new BinaryNode(3);
+
+// $root->left->left = new BinaryNode(4);
+// $root->left->right = new BinaryNode(5);
+
+// $root->right->left = new BinaryNode(6);
+// $root->right->right = new BinaryNode(7);
+
+// $givenTree = $root;
+// $invertedTree = BinaryTree::invert($givenTree);
+// var_dump($invertedTree);
